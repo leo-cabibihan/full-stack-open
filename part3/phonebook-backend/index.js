@@ -21,6 +21,8 @@ app.use(
   morgan(":method :url :status :res[content-length] - :response-time ms :data")
 );
 
+app.use(express.static("build"));
+
 app.get("/", (req, res) => {
   res.send("<h1>Hello chicken!</h1>");
 });
@@ -41,7 +43,7 @@ app.post("/persons", (request, response) => {
     });
   } else {
     //take the request body, add an id and append it to people
-
+    //for some reason the id doesn't change
     const person = { id: Math.floor(Math.random() * 10000), ...request.body };
     people = [...people, person];
     response.json(person);
