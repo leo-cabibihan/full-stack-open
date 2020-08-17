@@ -2,59 +2,38 @@ const express = require("express");
 const morgan = require("morgan");
 const cors = require("cors");
 const app = express();
+const Person = require("./person");
+const mongoose = require("mongoose");
 
-let people = [
-  {
-    id: 1,
-    name: "bruh",
-    number: "124345",
-  },
-];
-morgan.token("data", (req, res) => req.data);
+morgan.token("something", (req, res) => req.data);
 app.use(cors());
+app.use(express.static("build"));
 app.use(express.json());
+
 app.use((req, res, next) => {
-  req.data = JSON.stringify(req.body);
+  req.something = JSON.stringify(req.body);
   next();
 });
 app.use(
-  morgan(":method :url :status :res[content-length] - :response-time ms :data")
+  morgan(
+    ":method :url :status :res[content-length] - :response-time ms :something"
+  )
 );
 
-app.use(express.static("build"));
-
-app.get("/", (req, res) => {
-  res.send("<h1>Hello chicken!</h1>");
-});
-
-app.post("/persons", (request, response) => {
-  const { name, number } = request.body;
-  //check name or number is missing and respond with error if true
-  if (!name || !number) {
-    return response.status(400).json({
-      error: "missing attribute",
-    });
-  } else if (
-    //check if number already in phonebook
-    people.map((person) => person.number).includes(number)
-  ) {
-    return response.status(400).json({
-      error: "number already in phonebook",
-    });
-  } else {
-    //take the request body, add an id and append it to people
-    //for some reason the id doesn't change
-    const person = { id: Math.floor(Math.random() * 10000), ...request.body };
-    people = [...people, person];
-    response.json(person);
-  }
-});
-
 app.get("/persons", (req, res) => {
-  res.json(people);
+  Person.find({}).then((response) => {
+    res.json(response);
+  });
+});
+app.post("/persons", (request, response) => {
+  const person = new Person(request.body);
+
+  person.save().then((result) => {
+    response.json(result);
+  });
 });
 
-app.get("/api/info", (req, res) => {
+app.get("/info", (req, res) => {
   const d = new Date();
   res.send(
     `<div>Phonebook has ${
@@ -63,22 +42,38 @@ app.get("/api/info", (req, res) => {
   );
 });
 
-app.get("/persons/:id", (request, response) => {
-  const id = Number(request.params.id);
-  const person = people.find((person) => person.id === id);
-  if (!!person) {
-    response.json(person);
-  } else {
-    response.status(404).end();
+app.get("/persons/:id", (req, res, next) => {
+  Person.findOne({ _id: req.params.id })
+    .then((response) => (response ? res.json(response) : res.status(404).end()))
+    .catch((error) => next(error));
+});
+
+app.delete("/persons/:id", (req, res, next) => {
+  Person.findByIdAndDelete({ _id: req.params.id })
+    .then((response) => {
+      res.status(204).end();
+    })
+    .catch((error) => {
+      next(error);
+    });
+});
+
+app.put("/persons/:id", (req, res, next) => {
+  Person.findOneAndReplace({ _id: req.params.id }, req.body)
+    .then((response) => res.status(200).end())
+    .catch((error) => {
+      next(error);
+    });
+});
+
+const errorHandler = (error, request, response, next) => {
+  if (error.name === "CastError") {
+    return response.status(400).send({ error: "malformatted id" });
   }
-});
 
-app.delete("/persons/:id", (request, response) => {
-  const id = Number(request.params.id);
-  people = people.filter((person) => person.id !== id);
-
-  response.status(204).end();
-});
+  next(error);
+};
+app.use(errorHandler);
 
 const PORT = 3001;
 app.listen(PORT, () => {

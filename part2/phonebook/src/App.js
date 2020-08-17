@@ -98,13 +98,12 @@ const PhoneBook = (props) => {
   const [newNumber, setNewNumber] = useState("");
   const [newName, setNewName] = useState("");
   const [filterBy, setFilterBy] = useState("");
-  const filteredContacts = contacts.filter((contact) =>
-    contact.name.includes(filterBy)
+  const filteredContacts = contacts.filter(
+    (contact) => !!contact.name && contact.name.includes(filterBy)
   );
   useEffect(() => {
     axios.get("http://localhost:3001/persons").then((response) => {
       setContacts(response.data);
-      console.log("hello");
     });
   }, []);
 
@@ -134,20 +133,17 @@ const PhoneBook = (props) => {
           `${newName} already added, want to change the number?`
         ) === true
       ) {
-        const contactIndex = contacts.findIndex(
-          (contact) => contact.name === newName
-        );
-        const updatedContact = { ...contacts[contactIndex] };
-        updatedContact.number = newNumber;
+        const contact = contacts.find((contact) => contact.name === newName);
+        const updatedContact = {
+          name: contact.name,
+          number: newNumber,
+        };
         axios
-          .put(
-            `http://localhost:3001/persons/${contacts[contactIndex].id}`,
-            updatedContact
-          )
+          .put(`http://localhost:3001/persons/${contact.id}`, updatedContact)
           .then((response) => {
             setContacts(
-              contacts.map((contact, i) =>
-                contactIndex === i ? updatedContact : contact
+              contacts.map((i) =>
+                contact === i ? { ...updatedContact, id: contact.id } : i
               )
             );
             showMessage(`${newName} phone number updated to ${newNumber}`);
@@ -162,12 +158,11 @@ const PhoneBook = (props) => {
       const noteObject = {
         number: newNumber,
         name: newName,
-        id: contacts.reduce((acc, cur) => (acc < cur.id ? cur.id : acc), 0) + 1,
       };
       axios
         .post("http://localhost:3001/persons", noteObject)
         .then((response) => {
-          setContacts(contacts.concat(noteObject));
+          setContacts(contacts.concat(response.data));
           showMessage(`${newName} added to contacts list`);
           setNewNumber("");
           setNewName("");
