@@ -25,12 +25,18 @@ app.get("/persons", (req, res) => {
     res.json(response);
   });
 });
-app.post("/persons", (request, response) => {
+app.post("/persons", (request, response, next) => {
   const person = new Person(request.body);
 
-  person.save().then((result) => {
-    response.json(result);
-  });
+  person
+    .save()
+    .then((result) => {
+      response.json(result);
+    })
+    .catch((error) => {
+      next(error);
+      //response.status(400).send(error);
+    });
 });
 
 app.get("/info", (req, res) => {
@@ -69,6 +75,8 @@ app.put("/persons/:id", (req, res, next) => {
 const errorHandler = (error, request, response, next) => {
   if (error.name === "CastError") {
     return response.status(400).send({ error: "malformatted id" });
+  } else if (error.name === "ValidationError") {
+    return response.status(400).send(error);
   }
 
   next(error);
