@@ -166,6 +166,9 @@ const PhoneBook = (props) => {
           showMessage(`${newName} added to contacts list`);
           setNewNumber("");
           setNewName("");
+        })
+        .catch((error) => {
+          showMessage(error);
         });
     }
   };

@@ -3,9 +3,8 @@ const morgan = require("morgan");
 const cors = require("cors");
 const app = express();
 const Person = require("./person");
-const mongoose = require("mongoose");
 
-morgan.token("something", (req, res) => req.data);
+morgan.token("something", (req) => req.data);
 app.use(cors());
 app.use(express.static("build"));
 app.use(express.json());
@@ -41,11 +40,9 @@ app.post("/persons", (request, response, next) => {
 
 app.get("/info", (req, res) => {
   const d = new Date();
-  res.send(
-    `<div>Phonebook has ${
-      people.length
-    } people </div> <div> ${d.toLocaleString()}</div>`
-  );
+  Person.countDocuments({}).then((response) => {
+    res.send(`Phonebook has ${response} people <br> ${d.toLocaleString()}`);
+  });
 });
 
 app.get("/persons/:id", (req, res, next) => {
@@ -56,7 +53,7 @@ app.get("/persons/:id", (req, res, next) => {
 
 app.delete("/persons/:id", (req, res, next) => {
   Person.findByIdAndDelete({ _id: req.params.id })
-    .then((response) => {
+    .then(() => {
       res.status(204).end();
     })
     .catch((error) => {
@@ -66,7 +63,7 @@ app.delete("/persons/:id", (req, res, next) => {
 
 app.put("/persons/:id", (req, res, next) => {
   Person.findOneAndReplace({ _id: req.params.id }, req.body)
-    .then((response) => res.status(200).end())
+    .then(() => res.status(200).end())
     .catch((error) => {
       next(error);
     });
@@ -76,7 +73,7 @@ const errorHandler = (error, request, response, next) => {
   if (error.name === "CastError") {
     return response.status(400).send({ error: "malformatted id" });
   } else if (error.name === "ValidationError") {
-    return response.status(400).send(error);
+    return response.status(400).send(error.message);
   }
 
   next(error);
