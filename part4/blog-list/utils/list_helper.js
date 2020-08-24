@@ -31,20 +31,6 @@ const mostLikes = (blogs) => {
   )[0];
 };
 
-console.log(
-  mostLikes([
-    {
-      title: "Canonical string reduction",
-      author: "Edsger W. Dijkstra",
-      likes: 12,
-    },
-    {
-      author: "mehg",
-      likes: 4,
-    },
-  ])
-);
-
 module.exports = {
   dummy,
   totalLikes,

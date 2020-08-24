@@ -55,7 +55,7 @@ describe("gets author with most blog posts", () => {
   ];
   test("only one element", () => {
     const result = listHelper.mostBlogs(oneElement);
-    expect(result).toEqual();
+    expect(result).toEqual("Edsger W. Dijkstra");
   });
 });
 
@@ -69,6 +69,6 @@ describe("gets author with most likes", () => {
   ];
   test("only one element", () => {
     const result = listHelper.mostLikes(oneElement);
-    expect(result).toEqual(oneElement[0]);
+    expect(result).toEqual("Edsger W. Dijkstra");
   });
 });
