@@ -2,20 +2,20 @@ const blogsRouter = require("express").Router();
 const Blog = require("../models/blog");
 
 //replace this with app.use("/api/blogs",blogsRouter) inside app.js
-blogsRouter.get("/", async (request, response, next) => {
+blogsRouter.get("/", async (req, res, next) => {
   const blogs = await Blog.find({});
-  response.json(blogs);
+  res.json(blogs);
 });
 
-blogsRouter.get("/:id", async (request, response, next) => {
-  const blogs = await Blog.find({ _id: request.params.id });
-  response.json(blogs);
+blogsRouter.get("/:id", async (req, res, next) => {
+  const blogs = await Blog.find({ _id: req.params.id });
+  res.json(blogs);
 });
 
-blogsRouter.post("/", async (request, response, next) => {
-  const blog = new Blog(request.body);
+blogsRouter.post("/", async (req, res, next) => {
+  const blog = new Blog(req.body);
   const result = await blog.save();
-  response.status(201).json(result);
+  res.status(201).json(result);
 });
 
 blogsRouter.delete("/:id", async (req, res, next) => {
