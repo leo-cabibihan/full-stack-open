@@ -3,6 +3,7 @@ const supertest = require("supertest");
 const app = require("../app");
 const api = supertest(app);
 const Blog = require("../models/blog");
+const User = require("../models/user");
 
 const initialBlogs = [
   {
@@ -22,12 +23,17 @@ const initialBlogs = [
 
 beforeEach(async () => {
   await Blog.deleteMany({});
-
+  await User.deleteMany({});
   let BlogObject = new Blog(initialBlogs[0]);
   await BlogObject.save();
 
   BlogObject = new Blog(initialBlogs[1]);
   await BlogObject.save();
+
+  await api.post("/api/user").send({
+    username: "chicken",
+    password: "hello",
+  });
 });
 
 describe("when there are some notes saved", () => {
@@ -45,8 +51,15 @@ describe("when there are some notes saved", () => {
   });
 });
 
-describe("when adding new notes", () => {
+describe("when adding new blogs", () => {
   test("post successfully creates blog post", async () => {
+    const {
+      body: { token },
+    } = await api.post("/api/login").send({
+      username: "chicken",
+      password: "hello",
+    });
+
     const newData = {
       title: "cows",
       author: "kfc",
@@ -57,6 +70,7 @@ describe("when adding new notes", () => {
     await api
       .post("/api/blogs")
       .send(newData)
+      .set("Authorization", `bearer ${token}`)
       .expect(201)
       .expect("Content-Type", /application\/json/);
     const response = await api.get("/api/blogs");
@@ -65,6 +79,13 @@ describe("when adding new notes", () => {
   });
 
   test("likes property defaults to 0", async () => {
+    const {
+      body: { token },
+    } = await api.post("/api/login").send({
+      username: "chicken",
+      password: "hello",
+    });
+
     const newData = {
       title: "cows",
       author: "kfc",
@@ -74,6 +95,7 @@ describe("when adding new notes", () => {
     await api
       .post("/api/blogs")
       .send(newData)
+      .set("Authorization", `bearer ${token}`)
       .expect(201)
       .expect("Content-Type", /application\/json/);
     const response = await api.get("/api/blogs");
@@ -89,6 +111,7 @@ describe("when adding new notes", () => {
     await api.post("/api/blogs").send(newData).expect(400);
   });
 });
+
 /*
 describe("when deleting a blog post", () => {
   test("deletion is successful", async () => {
@@ -100,7 +123,6 @@ describe("when deleting a blog post", () => {
     expect(secondResponse).toHaveLength(response.length - 1);
   });
 });
-
 describe("when updating a blog post", () => {
   test("the amount of likes change", async () => {
     const response = await api.get("/api/blogs");
@@ -109,9 +131,9 @@ describe("when updating a blog post", () => {
     const newData = { ...firstItem, likes: firstItem.likes + 1 };
     await api.put(`/api/blogs${id}`).send(newData).expect(204);
     const secondResponse = await api
-      .get(`/api/blogs/${id}`)
-      .expect(200)
-      .expect("Content-Type", /application\/json/);
+    .get(`/api/blogs/${id}`)
+    .expect(200)
+    .expect("Content-Type", /application\/json/);
     expect(secondResponse).toEqual(newData);
   });
 });
