@@ -172,6 +172,7 @@ const PhoneBook = (props) => {
         });
     }
   };
+
   const removeContact = (id, name) => {
     if (window.confirm(`Are you sure you want to delete ${name}`)) {
       axios.delete(`http://localhost:3001/persons/${id}`).then((response) => {
