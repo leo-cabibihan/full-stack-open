@@ -6,7 +6,6 @@ const Person = require("./person");
 
 morgan.token("something", (req) => req.data);
 app.use(cors());
-app.use(express.static("build"));
 app.use(express.json());
 
 app.use((req, res, next) => {
