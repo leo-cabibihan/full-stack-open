@@ -5,6 +5,7 @@ import blogService from "./services/blogs";
 import LoginForm from "./components/LoginForm";
 import loginService from "./services/login";
 import BlogForm from "./components/BlogForm";
+import Toggleable from "./components/Toggleable";
 
 const App = () => {
   const [blogs, setBlogs] = useState([]);
@@ -62,7 +63,7 @@ const App = () => {
         setBlogs(blogs.concat(res));
         showMessage(`new blog, ${title} added`);
       })
-      .catch((err) => console.log(err.message));
+      .catch((err) => showMessage("not formatted properly"));
   };
 
   return (
@@ -74,11 +75,13 @@ const App = () => {
         <div>
           <h2>blogs</h2>
           <p>
-            {`Logged in as ${user.username}`}
+            {`Logged in as ${user.username}`}{" "}
             <button onClick={signOut}>Log Out</button>
           </p>
           <h2>add new</h2>
-          <BlogForm action={addBlog} />
+          <Toggleable buttonLabel={"new note"}>
+            <BlogForm action={addBlog} />
+          </Toggleable>
           {blogs.map((blog) => (
             <Blog key={blog.id} blog={blog} />
           ))}
