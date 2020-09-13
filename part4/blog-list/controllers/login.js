@@ -3,11 +3,9 @@ const loginRouter = require("express").Router();
 const User = require("../models/user");
 const { response } = require("express");
 const bcrypt = require("bcryptjs");
-//4.18 implement token authentication
 
 loginRouter.post("/", async (req, res) => {
   const { username, password } = req.body;
-
   const user = await User.findOne({ username: username });
   const passwordCorrect =
     user === null ? false : await bcrypt.compare(password, user.passwordHash);

@@ -20,6 +20,7 @@ usersRouter.get("/:id", async (req, res) => {
 
 // create new users
 usersRouter.post("/", async (req, res, next) => {
+  console.log(req.body);
   const {
     body: { username, password, name },
   } = req;
