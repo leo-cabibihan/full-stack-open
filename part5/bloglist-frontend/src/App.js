@@ -1,5 +1,5 @@
 //app.js
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Blog from "./components/Blog";
 import blogService from "./services/blogs";
 import LoginForm from "./components/LoginForm";
@@ -55,11 +55,13 @@ const App = () => {
     window.localStorage.removeItem("loggedBlogListUser");
     setUser(null);
   };
+  const blogFormRef = useRef();
 
   const addBlog = (title, author, url) => {
     blogService
       .create({ title, author, url })
       .then((res) => {
+        blogFormRef.current.toggleVisibility();
         setBlogs(blogs.concat(res));
         showMessage(`new blog, ${title} added`);
       })
@@ -79,7 +81,7 @@ const App = () => {
             <button onClick={signOut}>Log Out</button>
           </p>
           <h2>add new</h2>
-          <Toggleable buttonLabel={"new note"}>
+          <Toggleable buttonLabel={"new note"} ref={blogFormRef}>
             <BlogForm action={addBlog} />
           </Toggleable>
           {blogs.map((blog) => (
