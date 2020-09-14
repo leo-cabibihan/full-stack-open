@@ -27,7 +27,6 @@ const App = () => {
 
   useEffect(() => {
     const loggedUserJSON = window.localStorage.getItem("loggedBlogListUser");
-    console.log(loggedUserJSON);
     if (loggedUserJSON) {
       const user = JSON.parse(loggedUserJSON);
       setUser(user);
@@ -68,6 +67,23 @@ const App = () => {
       .catch((err) => showMessage("not formatted properly"));
   };
 
+  const incrementLike = (blog) => {
+    const { likes, id, ...rest } = blog;
+    const newBlog = { likes: likes + 1, id, ...rest };
+    blogService
+      .update(id, newBlog)
+      .then(() => console.log("success"))
+      .catch((err) => console.log(err));
+    return newBlog;
+  };
+
+  const like = (id) => {
+    const a = blogs.map((blog) =>
+      blog.id === id ? incrementLike(blog) : blog
+    );
+    setBlogs(a);
+  };
+
   return (
     <div>
       {shouldMessage ? <p>{`${message}`}</p> : null}
@@ -85,7 +101,7 @@ const App = () => {
             <BlogForm action={addBlog} />
           </Toggleable>
           {blogs.map((blog) => (
-            <Blog key={blog.id} blog={blog} />
+            <Blog key={blog.id} blog={blog} like={like} />
           ))}
         </div>
       )}

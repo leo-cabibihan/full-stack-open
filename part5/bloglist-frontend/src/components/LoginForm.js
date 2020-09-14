@@ -29,6 +29,7 @@ const LoginForm = ({ action }) => {
           onChange={(event) => {
             setPassword(event.target.value);
           }}
+          type="password"
         />
       </div>
       <div>

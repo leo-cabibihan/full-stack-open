@@ -1,25 +1,29 @@
 import React from "react";
 import Toggleable from "./Toggleable";
-/*
-author: "dsijisdj"
-id: "5f5e245ca9f9629eb406c2f2"
-likes: 0
-title: "sddff"
-url: "a.com"
-user:
-id: "5f5726834edba75c08f03a05"
-name: "chicken"
-username: "chicken"
-*/
 
-const Blog = ({ blog }) => {
+const Blog = ({ blog, like, remove }) => {
+  const useRemove = () => {
+    if (window.confirm(`Remove ${blog.title} by ${blog.author}`)) {
+      remove(blog.id);
+    }
+  };
   return (
     <div>
       {blog.title} {blog.author}
       <Toggleable buttonLabel={"show"} closingLabel={"hide"}>
         <div>{blog.url}</div>
-        <div>{blog.likes} </div>
+        <div>
+          {blog.likes}{" "}
+          <button
+            onClick={() => {
+              like(blog.id);
+            }}
+          >
+            like
+          </button>
+        </div>
         <div>{blog.user.username}</div>
+        <button onClick={useRemove}> remove </button>
       </Toggleable>
     </div>
   );
