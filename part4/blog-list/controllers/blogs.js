@@ -5,11 +5,13 @@ const jwt = require("jsonwebtoken");
 
 //replace this with app.use("/api/blogs",blogsRouter) inside app.js
 blogsRouter.get("/", async (req, res, next) => {
-  const blogs = await Blog.find({}).populate("user", {
-    username: 1,
-    name: 1,
-    id: 1,
-  });
+  const blogs = await Blog.find({})
+    .populate("user", {
+      username: 1,
+      name: 1,
+      id: 1,
+    })
+    .sort("-likes");
   res.json(blogs);
 });
 

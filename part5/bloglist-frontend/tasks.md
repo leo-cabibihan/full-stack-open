@@ -1,4 +1,4 @@
-## Task 5.5
+~~## Task 5.5~~
 
 Change the form for creating blog posts so that it is only displayed when appropriate.
 
@@ -11,11 +11,11 @@ It expands when button new note is clicked
 
 The form closes when a new blog is created.
 
-## Task 5.6
+~~## Task 5.6~~
 
 Separate the form for creating a new blog into its own component
 
-## Task 5.7
+~~## Task 5.7~~
 
 Let's add each blog a button, which controls if all of the details about the blog are shown or not.
 
@@ -23,11 +23,11 @@ Full details of the blog open when the button is clicked.
 
 ![](https://fullstackopen.com/static/b49e9ca45d0582829eed343baad44910/5a190/13ea.png)
 
-## Task 5.8
+~~## Task 5.8~~
 
 Implement the functionality for the like button
 
-## Task 5.9
+~~## Task 5.9~~
 
 Modify the application to list the blog posts by the number of likes. Sorting the blog posts can be done with the array sort method.
 

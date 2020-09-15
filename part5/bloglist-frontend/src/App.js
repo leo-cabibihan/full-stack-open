@@ -7,6 +7,10 @@ import loginService from "./services/login";
 import BlogForm from "./components/BlogForm";
 import Toggleable from "./components/Toggleable";
 
+const sorted = (list) => {
+  return [...list].sort((b, a) => a.likes - b.likes);
+};
+
 const App = () => {
   const [blogs, setBlogs] = useState([]);
   const [user, setUser] = useState(null);
@@ -81,7 +85,7 @@ const App = () => {
     const a = blogs.map((blog) =>
       blog.id === id ? incrementLike(blog) : blog
     );
-    setBlogs(a);
+    setBlogs(sorted(a));
   };
 
   return (
