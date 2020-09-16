@@ -31,7 +31,7 @@ Implement the functionality for the like button
 
 Modify the application to list the blog posts by the number of likes. Sorting the blog posts can be done with the array sort method.
 
-## Task 5.10
+~~## Task 5.10~~
 
 Add a new button for deleting blog posts. Also implement the logic for deleting blog posts in the backend.
 ![](https://fullstackopen.com/static/87b7180f1f10ce670af1bc21f50233ec/5a190/14ea.png)

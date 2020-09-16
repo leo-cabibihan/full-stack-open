@@ -54,8 +54,10 @@ blogsRouter.delete("/:id", async (req, res, next) => {
     return res.status(401).json({ error: "token missing or invalid" });
   } else if (blog.user.toString() === decodedToken.id.toString()) {
     await Blog.findByIdAndRemove(req.params.id);
+    console.log("yes very nice");
     res.status(204).end();
   } else {
+    console.log("oops");
     return res.status(401).json({ error: "action not permitted for user" });
   }
 });
