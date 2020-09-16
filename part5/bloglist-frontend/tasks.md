@@ -43,3 +43,9 @@ Define PropTypes for one of the components of your application.
 ~~## Task 5.12~~
 
 Add ESlint to the project. Define the configuration according to your liking. Fix all of the linter errors.
+
+## Task 5.13
+
+Make a test which checks that the component displaying a blog renders the blog's title and author, but does not render its url or number of likes by default
+
+Add CSS-classes to the component to help the testing as necessary.
