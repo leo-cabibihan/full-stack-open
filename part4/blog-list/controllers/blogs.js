@@ -46,6 +46,7 @@ blogsRouter.post("/", async (req, res, next) => {
 
 // only the user who created the post can delete
 blogsRouter.delete("/:id", async (req, res, next) => {
+  console.log(req.params.id);
   const blog = await Blog.findById(req.params.id);
   const decodedToken = jwt.verify(req.token, process.env.JWT_SECRET);
 
@@ -61,6 +62,7 @@ blogsRouter.delete("/:id", async (req, res, next) => {
 
 blogsRouter.put("/:id", async (req, res, next) => {
   const blog = await Blog.findById(req.params.id);
+
   const update = { likes: blog.likes + 1 };
   await blog.updateOne(update);
   res.status(200).end();

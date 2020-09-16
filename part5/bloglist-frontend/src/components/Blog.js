@@ -1,22 +1,22 @@
-import React from "react";
-import Toggleable from "./Toggleable";
+import React from 'react'
+import Toggleable from './Toggleable'
 
 const Blog = ({ blog, like, remove }) => {
   const useRemove = () => {
     if (window.confirm(`Remove ${blog.title} by ${blog.author}`)) {
-      remove(blog.id);
+      remove(blog.id)
     }
-  };
+  }
   return (
     <div>
       {blog.title} {blog.author}
-      <Toggleable buttonLabel={"show"} closingLabel={"hide"}>
+      <Toggleable buttonLabel={'show'} closingLabel={'hide'}>
         <div>{blog.url}</div>
         <div>
-          {blog.likes}{" "}
+          {blog.likes}{' '}
           <button
             onClick={() => {
-              like(blog.id);
+              like(blog.id)
             }}
           >
             like
@@ -26,7 +26,7 @@ const Blog = ({ blog, like, remove }) => {
         <button onClick={useRemove}> remove </button>
       </Toggleable>
     </div>
-  );
-};
+  )
+}
 
-export default Blog;
+export default Blog

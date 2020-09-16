@@ -36,10 +36,10 @@ Modify the application to list the blog posts by the number of likes. Sorting th
 Add a new button for deleting blog posts. Also implement the logic for deleting blog posts in the backend.
 ![](https://fullstackopen.com/static/87b7180f1f10ce670af1bc21f50233ec/5a190/14ea.png)
 
-## Task 5.11
+~~## Task 5.11~~
 
 Define PropTypes for one of the components of your application.
 
-## Task 5.12
+~~## Task 5.12~~
 
 Add ESlint to the project. Define the configuration according to your liking. Fix all of the linter errors.
