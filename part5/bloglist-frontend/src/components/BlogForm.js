@@ -1,44 +1,45 @@
 //over here
-import React, { useState } from 'react'
+import React, { useState } from "react";
 
 const BlogForm = ({ action }) => {
-  const [title, setTitle] = useState('')
-  const [author, setAuthor] = useState('')
-  const [url, setUrl] = useState('')
+  const [title, setTitle] = useState("");
+  const [author, setAuthor] = useState("");
+  const [url, setUrl] = useState("");
 
   const handleInput = (event) => {
-    event.preventDefault()
-    action(title, author, url)
-    setTitle('')
-    setAuthor('')
-    setUrl('')
-  }
+    event.preventDefault();
+    action(title, author, url);
+    setTitle("");
+    setAuthor("");
+    setUrl("");
+  };
+
   return (
     <form onSubmit={handleInput}>
       <div>
-        title{' '}
+        title{" "}
         <input
           value={title}
           onChange={(event) => {
-            setTitle(event.target.value)
+            setTitle(event.target.value);
           }}
         />
       </div>
       <div>
-        author{' '}
+        author{" "}
         <input
           value={author}
           onChange={(event) => {
-            setAuthor(event.target.value)
+            setAuthor(event.target.value);
           }}
         />
       </div>
       <div>
-        url{' '}
+        url{" "}
         <input
           value={url}
           onChange={(event) => {
-            setUrl(event.target.value)
+            setUrl(event.target.value);
           }}
         />
       </div>
@@ -46,7 +47,7 @@ const BlogForm = ({ action }) => {
         <button type="submit"> Add </button>
       </div>
     </form>
-  )
-}
+  );
+};
 
-export default BlogForm
+export default BlogForm;

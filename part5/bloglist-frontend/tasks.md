@@ -57,3 +57,7 @@ Make a test which checks that blog's url and number of likes are shown when the 
 ~~## Task 5.15~~
 
 Make a test which ensures that if the like button is clicked twice, the event handler the component received as props is called twice.
+
+~~## Task 5.16~~
+
+Make a test for the new blog form. The test should check, that the form calls the event handler it received as props with the right details when a new blog is called.
