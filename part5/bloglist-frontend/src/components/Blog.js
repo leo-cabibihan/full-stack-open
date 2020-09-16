@@ -13,7 +13,7 @@ const Blog = ({ blog, like, remove }) => {
       {blog.title} {blog.author}
       <Toggleable buttonLabel={"show"} closingLabel={"hide"}>
         <div>{blog.url}</div>
-        <div>
+        <div className="likes">
           {blog.likes}{" "}
           <button
             onClick={() => {
