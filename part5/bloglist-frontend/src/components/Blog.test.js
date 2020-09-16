@@ -14,10 +14,12 @@ describe("<Blog />", () => {
     },
   };
 
+  const like = jest.fn();
+
   let component;
 
   beforeEach(() => {
-    component = render(<Blog blog={blog} />);
+    component = render(<Blog blog={blog} like={like} />);
   });
 
   test("renders content", () => {
@@ -31,5 +33,12 @@ describe("<Blog />", () => {
 
     const likes = component.container.querySelector(".likes");
     expect(likes).toHaveTextContent("10");
+  });
+
+  test("like button works", () => {
+    const button = component.getByText("like");
+    fireEvent.click(button);
+    fireEvent.click(button);
+    expect(like.mock.calls).toHaveLength(2);
   });
 });
