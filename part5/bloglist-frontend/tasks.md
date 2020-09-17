@@ -61,3 +61,30 @@ Make a test which ensures that if the like button is clicked twice, the event ha
 ~~## Task 5.16~~
 
 Make a test for the new blog form. The test should check, that the form calls the event handler it received as props with the right details when a new blog is called.
+
+~~## Task 5.17~~
+
+Configure Cypress to your project. Make a test for checking that the application displays the login form by default.
+
+## Task 5.18
+
+Make tests for logging in. Test both successful and unsuccessful log in attempts.
+Make a new user in the beforeEach block for the tests.
+
+## Task 5.19
+
+Make a test which checks that a logged in user can create a new blog. The structure of the test could be as follows
+
+## Task 5.20
+
+Make a test which checks that user can like a blog.
+
+## Task 5.21
+
+Make a test for ensuring that the user who created a blog can delete it.
+
+## Task 5.22
+
+Make a test which checks that the blogs are ordered according to likes with the blog with the most likes being first.
+
+This exercise might be a bit trickier. One solution is to find all of the blogs and then compare them in the callback function of a then command.
