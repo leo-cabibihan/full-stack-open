@@ -101,7 +101,7 @@ const App = () => {
             <button onClick={signOut}>Log Out</button>
           </p>
           <h2>add new</h2>
-          <Toggleable buttonLabel={"new note"} ref={blogFormRef}>
+          <Toggleable buttonLabel={"add blog"} ref={blogFormRef}>
             <BlogForm action={addBlog} />
           </Toggleable>
           {blogs.map((blog) => (

@@ -26,4 +26,31 @@ describe("Blog List", function () {
       cy.contains("username or password is wrong");
     });
   });
+
+  describe.only("When logged in", function () {
+    const blog = {
+      author: "meh",
+      title: "something",
+      url: "a.com",
+    };
+
+    beforeEach(function () {
+      cy.get("#username").type(user.username);
+      cy.get("#password").type(user.password);
+      cy.get("#login-button").click();
+    });
+
+    it("A blog can be created", function () {
+      cy.get(".toggleButton").click();
+      cy.get("#author").type(blog.author);
+      cy.get("#title").type(blog.title);
+      cy.get("#url").type(blog.url);
+      cy.get("#add-note").click();
+      cy.contains("something");
+    });
+
+    it("A post can be liked", function () {
+      cy.get();
+    });
+  });
 });

@@ -1,4 +1,3 @@
-//over here
 import React, { useState } from "react";
 
 const BlogForm = ({ action }) => {
@@ -19,6 +18,7 @@ const BlogForm = ({ action }) => {
       <div>
         title{" "}
         <input
+          id="title"
           value={title}
           onChange={(event) => {
             setTitle(event.target.value);
@@ -28,6 +28,7 @@ const BlogForm = ({ action }) => {
       <div>
         author{" "}
         <input
+          id="author"
           value={author}
           onChange={(event) => {
             setAuthor(event.target.value);
@@ -37,6 +38,7 @@ const BlogForm = ({ action }) => {
       <div>
         url{" "}
         <input
+          id="url"
           value={url}
           onChange={(event) => {
             setUrl(event.target.value);
@@ -44,7 +46,10 @@ const BlogForm = ({ action }) => {
         />
       </div>
       <div>
-        <button type="submit"> Add </button>
+        <button id="add-note" type="submit">
+          {" "}
+          Add{" "}
+        </button>
       </div>
     </form>
   );

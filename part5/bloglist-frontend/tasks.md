@@ -71,9 +71,9 @@ Configure Cypress to your project. Make a test for checking that the application
 Make tests for logging in. Test both successful and unsuccessful log in attempts.
 Make a new user in the beforeEach block for the tests.
 
-## Task 5.19
+~~## Task 5.19~~
 
-Make a test which checks that a logged in user can create a new blog. The structure of the test could be as follows
+Make a test which checks that a logged in user can create a new blog.
 
 ## Task 5.20
 
