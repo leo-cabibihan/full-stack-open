@@ -66,7 +66,7 @@ Make a test for the new blog form. The test should check, that the form calls th
 
 Configure Cypress to your project. Make a test for checking that the application displays the login form by default.
 
-## Task 5.18
+~~## Task 5.18~~
 
 Make tests for logging in. Test both successful and unsuccessful log in attempts.
 Make a new user in the beforeEach block for the tests.

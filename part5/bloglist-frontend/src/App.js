@@ -75,10 +75,10 @@ const App = () => {
     const newBlog = { likes: likes + 1, ...rest };
     try {
       await blogService.update(id, newBlog);
+      setBlogs(sorted(blogs.map((blog) => (blog.id === id ? newBlog : blog))));
     } catch (error) {
       alert("something broke");
     }
-    setBlogs(sorted(blogs.map((blog) => (blog.id === id ? newBlog : blog))));
   };
 
   const remove = async (id) => {
