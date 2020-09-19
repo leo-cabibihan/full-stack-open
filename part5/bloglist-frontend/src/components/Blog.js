@@ -11,11 +11,12 @@ const Blog = ({ blog, like, remove }) => {
   return (
     <div className="blog">
       {blog.title} {blog.author}
-      <Toggleable buttonLabel={"show"} closingLabel={"hide"}>
+      <Toggleable id={"show-button"} buttonLabel={"show"} closingLabel={"hide"}>
         <div>{blog.url}</div>
         <div className="likes">
           {blog.likes}{" "}
           <button
+            id="like-button"
             onClick={() => {
               like(blog.id);
             }}

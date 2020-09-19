@@ -50,7 +50,25 @@ describe("Blog List", function () {
     });
 
     it("A post can be liked", function () {
-      cy.get();
+      cy.get(".toggleButton").click();
+      cy.get("#author").type(blog.author);
+      cy.get("#title").type(blog.title);
+      cy.get("#url").type(blog.url);
+      cy.get("#add-note").click();
+      cy.get("#show-button").click();
+      cy.get("#like-button").click();
+    });
+
+    it("A blog can be deleted", function () {
+      cy.get(".toggleButton").click();
+      cy.get("#author").type(blog.author);
+      cy.get("#title").type(blog.title);
+      cy.get("#url").type(blog.url);
+      cy.get("#add-note").click();
+      cy.get("#show-button").click();
+      cy.get("#like-button").click();
+      cy.get("button").contains("remove").click();
+      cy.get(".blog").should("not.exist");
     });
   });
 });
