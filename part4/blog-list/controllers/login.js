@@ -22,7 +22,9 @@ loginRouter.post("/", async (req, res) => {
   };
 
   const token = jwt.sign(userForToken, process.env.JWT_SECRET);
-  res.status(200).send({ token, username: user.username, name: user.name });
+  res
+    .status(200)
+    .send({ token, username: user.username, name: user.name, id: user.id });
 });
 
 //modify blog so that only people with a valid token can upload a blog

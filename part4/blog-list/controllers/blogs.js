@@ -47,12 +47,13 @@ blogsRouter.post("/", async (req, res, next) => {
 // only the user who created the post can delete
 blogsRouter.delete("/:id", async (req, res, next) => {
   console.log(req.params.id);
-  const blog = await Blog.findById(req.params.id);
+  console.log("jidfji");
   const decodedToken = jwt.verify(req.token, process.env.JWT_SECRET);
+  const blog = await Blog.findById(req.params.id);
 
   if (!req.token || !decodedToken.id || !blog) {
     return res.status(401).json({ error: "token missing or invalid" });
-  } else if (blog.user.toString() === decodedToken.id.toString()) {
+  } else if (blog.user.toString() === req.body.userId.toString()) {
     await Blog.findByIdAndRemove(req.params.id);
     console.log("yes very nice");
     res.status(204).end();

@@ -33,7 +33,8 @@ const App = () => {
     if (loggedUserJSON) {
       const user = JSON.parse(loggedUserJSON);
       setUser(user);
-      blogService.setToken(user.token);
+      //blogService.setToken(user.token);
+      blogService.setUser(user);
     }
   }, []);
 
@@ -46,7 +47,8 @@ const App = () => {
           "loggedBlogListUser",
           JSON.stringify(newUser)
         );
-        blogService.setToken(newUser.token);
+        //blogService.setToken(newUser.token);
+        blogService.setUser(newUser);
       })
       .catch(() => {
         showMessage("username or password is wrong");
@@ -84,7 +86,7 @@ const App = () => {
   const remove = async (id) => {
     await blogService
       .remove(id)
-      .then(() => setBlogs(blogs.filter((blog) => blog !== id)))
+      .then(() => setBlogs(blogs.filter((blog) => blog.id !== id)))
       .catch(() => alert("you're not allowed to delete that"));
   };
 

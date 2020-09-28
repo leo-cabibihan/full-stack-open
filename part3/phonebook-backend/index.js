@@ -33,7 +33,6 @@ app.post("/persons", (request, response, next) => {
     })
     .catch((error) => {
       next(error);
-      //response.status(400).send(error);
     });
 });
 
