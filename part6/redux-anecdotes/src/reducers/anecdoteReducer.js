@@ -17,15 +17,24 @@ const asObject = (anecdote) => {
   };
 };
 
+const sortedObjects = (array, key) => {
+  const newArray = array;
+  newArray.sort((a, b) => b[key] - a[key]);
+  return newArray;
+};
+
 const initialState = anecdotesAtStart.map(asObject);
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case "VOTE":
-      return state.map((anecdote) =>
-        action.data.id === anecdote.id
-          ? Object.assign(anecdote, { votes: anecdote.votes + 1 })
-          : anecdote
+      return sortedObjects(
+        state.map((anecdote) =>
+          action.data.id === anecdote.id
+            ? Object.assign(anecdote, { votes: anecdote.votes + 1 })
+            : anecdote
+        ),
+        "votes"
       );
     case "NEW_ANECDOTE":
       return state.concat(action.data);
