@@ -2,14 +2,8 @@ import React from "react";
 import { vote } from "../reducers/anecdoteReducer";
 import { useSelector, useDispatch } from "react-redux";
 
-const Anecdote = () => {
-  const sorted = (array) => {
-    let newArray = array;
-    newArray.sort((a, b) => b - a);
-    return newArray;
-  };
-
-  const anecdotes = useSelector((state) => sorted(state));
+const AnecdoteList = () => {
+  const anecdotes = useSelector((state) => state);
   const dispatch = useDispatch();
 
   return (
@@ -27,4 +21,4 @@ const Anecdote = () => {
   );
 };
 
-export default Anecdote;
+export default AnecdoteList;
