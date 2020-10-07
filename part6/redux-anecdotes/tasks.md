@@ -12,6 +12,8 @@ You can keep the form uncontrolled, like we did earlier.
 
 Make sure that the anecdotes are ordered by the number of votes.
 
+~~The tasks in between~~
+
 ~~## Task 6.9~~
 
 Start using Redux DevTools. Move defining the Redux-store into its own file store.js.
@@ -24,7 +26,7 @@ Extend the component so that it renders the message stored in the redux store, m
 
 You will have to make changes to the application's existing reducer. Create a separate reducer for the new functionality and refactor the application so that it uses a combined reducer as shown in this part of the course material.
 
-## Task 6.11
+~~## Task 6.11~~
 
 Extend the application so that it uses the Notification component to display a message for the duration of five seconds when the user votes for an anecdote or creates a new anecdote:
 
