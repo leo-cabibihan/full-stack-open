@@ -16,7 +16,7 @@ Make sure that the anecdotes are ordered by the number of votes.
 
 Start using Redux DevTools. Move defining the Redux-store into its own file store.js.
 
-## Task 6.10
+~~## Task 6.10~~
 
 The application has a ready-made body for the Notification component:
 
