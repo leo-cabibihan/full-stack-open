@@ -32,6 +32,6 @@ Extend the application so that it uses the Notification component to display a m
 
 It's recommended to create separate action creators for setting and removing notifications.
 
-## Task 6.12
+~~## Task 6.12~~
 
 Implement filtering for the anecdotes that are displayed to the user.
