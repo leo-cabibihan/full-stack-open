@@ -40,6 +40,6 @@ Implement filtering for the anecdotes that are displayed to the user.
 
 When the application launches, fetch the anecdotes from the backend implemented using json-server.
 
-## Task 6.14
+~~## Task 6.14~~
 
 Modify the creation of new anecdotes, such that the anecdotes are stored in the backend.
