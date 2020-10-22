@@ -35,3 +35,11 @@ It's recommended to create separate action creators for setting and removing not
 ~~## Task 6.12~~
 
 Implement filtering for the anecdotes that are displayed to the user.
+
+~~## Task 6.13~~
+
+When the application launches, fetch the anecdotes from the backend implemented using json-server.
+
+## Task 6.14
+
+Modify the creation of new anecdotes, such that the anecdotes are stored in the backend.

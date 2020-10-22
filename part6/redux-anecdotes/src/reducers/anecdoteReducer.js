@@ -38,6 +38,8 @@ const reducer = (state = initialState, action) => {
       );
     case "NEW_ANECDOTE":
       return state.concat(action.data);
+    case "UPDATE_ALL":
+      return action.data
     default:
       return state;
   }
@@ -56,5 +58,12 @@ export const vote = (id) => {
     data: { id },
   };
 };
+
+export const updateAll = (content) => {
+  return {
+    type: "UPDATE_ALL",
+    data: content
+  }
+}
 
 export default reducer;
