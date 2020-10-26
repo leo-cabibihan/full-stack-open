@@ -1,8 +1,8 @@
 import anecdoteService from "../services/anecdotes";
 
-const sortedObjects = (array, key) => {
+const sortedVotes = (array) => {
   const newArray = array;
-  newArray.sort((a, b) => b[key] - a[key]);
+  newArray.sort((a, b) => b.votes - a.votes);
   return newArray;
 };
 
@@ -10,18 +10,17 @@ const reducer = (state = [], action) => {
   console.log(state);
   switch (action.type) {
     case "VOTE":
-      return sortedObjects(
+      return sortedVotes(
         state.map((anecdote) =>
           action.data.id === anecdote.id
             ? Object.assign(anecdote, { votes: anecdote.votes + 1 })
             : anecdote
-        ),
-        "votes"
+        )
       );
     case "NEW_ANECDOTE":
       return state.concat(action.data);
     case "UPDATE_ALL":
-      return action.data;
+      return sortedVotes(action.data);
     default:
       return state;
   }
