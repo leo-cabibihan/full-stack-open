@@ -48,7 +48,7 @@ Modify the creation of new anecdotes, such that the anecdotes are stored in the 
 
 Modify the initialization of redux-store to happen using asynchronous action creators, which are made possible by the redux-thunk-library.
 
-## Task 6.16
+~~## Task 6.16~~
 
 Also modify the creation of a new anecdote to happen using asynchronous action creators, made possible by the redux-thunk-library.
 

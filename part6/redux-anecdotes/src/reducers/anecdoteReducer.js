@@ -1,9 +1,4 @@
-const asObject = (anecdote) => {
-  return {
-    ...anecdote,
-    votes: 0,
-  };
-};
+import anecdoteService from "../services/anecdotes";
 
 const sortedObjects = (array, key) => {
   const newArray = array;
@@ -33,9 +28,12 @@ const reducer = (state = [], action) => {
 };
 
 export const createAnecdote = (content) => {
-  return {
-    type: "NEW_ANECDOTE",
-    data: asObject(content),
+  return async (dispatch) => {
+    const newAnecdote = await anecdoteService.createNew(content);
+    dispatch({
+      type: "NEW_ANECDOTE",
+      data: newAnecdote,
+    });
   };
 };
 
