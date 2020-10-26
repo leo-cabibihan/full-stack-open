@@ -11,9 +11,8 @@ const sortedObjects = (array, key) => {
   return newArray;
 };
 
-
 const reducer = (state = [], action) => {
-  console.log(state)
+  console.log(state);
   switch (action.type) {
     case "VOTE":
       return sortedObjects(
@@ -27,7 +26,7 @@ const reducer = (state = [], action) => {
     case "NEW_ANECDOTE":
       return state.concat(action.data);
     case "UPDATE_ALL":
-      return action.data
+      return action.data;
     default:
       return state;
   }
@@ -50,8 +49,8 @@ export const vote = (id) => {
 export const updateAll = (content) => {
   return {
     type: "UPDATE_ALL",
-    data: content
-  }
-}
+    data: content,
+  };
+};
 
 export default reducer;

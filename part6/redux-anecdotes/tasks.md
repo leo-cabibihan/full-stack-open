@@ -43,3 +43,19 @@ When the application launches, fetch the anecdotes from the backend implemented 
 ~~## Task 6.14~~
 
 Modify the creation of new anecdotes, such that the anecdotes are stored in the backend.
+
+~~## Task 6.15~~
+
+Modify the initialization of redux-store to happen using asynchronous action creators, which are made possible by the redux-thunk-library.
+
+## Task 6.16
+
+Also modify the creation of a new anecdote to happen using asynchronous action creators, made possible by the redux-thunk-library.
+
+## Task 6.17
+
+Voting does not yet save changes to the backend. Fix the situation with the help of the redux-thunk-library.
+
+## Task 6.18
+
+The creation of notifications is still a bit tedious, since one has to do two actions and use the setTimeout function:
