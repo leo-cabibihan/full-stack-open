@@ -10,11 +10,8 @@ const AnecdoteForm = () => {
     event.preventDefault();
     const content = event.target.anecdote.value;
     event.target.anecdote.value = "";
-    dispatch(showMessage(content));
+    dispatch(showMessage(content, 5000));
     dispatch(createAnecdote(content));
-    setTimeout(() => {
-      dispatch(hideNotification());
-    }, 5000);
   };
   return (
     <>

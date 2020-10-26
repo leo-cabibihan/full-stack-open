@@ -56,6 +56,6 @@ Also modify the creation of a new anecdote to happen using asynchronous action c
 
 Voting does not yet save changes to the backend. Fix the situation with the help of the redux-thunk-library.
 
-## Task 6.18
+~~## Task 6.18~~
 
 The creation of notifications is still a bit tedious, since one has to do two actions and use the setTimeout function:

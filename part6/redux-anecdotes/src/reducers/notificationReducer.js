@@ -11,10 +11,13 @@ const reducer = (state = initialState, action) => {
   }
 };
 
-export const showMessage = (message) => {
-  return {
-    type: "NEW_MESSAGE",
-    data: { message, open: true },
+export const showMessage = (message, duration) => {
+  return (dispatch) => {
+    dispatch({
+      type: "NEW_MESSAGE",
+      data: { message, open: true },
+    });
+    setTimeout(() => dispatch({ type: "HIDE_MESSAGE" }), duration);
   };
 };
 
