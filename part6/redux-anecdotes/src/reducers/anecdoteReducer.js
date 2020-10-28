@@ -7,7 +7,6 @@ const sortedVotes = (array) => {
 };
 
 const reducer = (state = [], action) => {
-  console.log(state);
   switch (action.type) {
     case "VOTE":
       return sortedVotes(

@@ -59,3 +59,17 @@ Voting does not yet save changes to the backend. Fix the situation with the help
 ~~## Task 6.18~~
 
 The creation of notifications is still a bit tedious, since one has to do two actions and use the setTimeout function:
+
+~~## Task 6.19~~
+
+Modify the AnecdoteList component so that it uses the connect function instead of the hooks. You may need to implement your own mapStateToProps and mapDispatchToProps functions.
+
+## Task 6.20
+
+Do the same for the Filter and AnecdoteForm components.
+
+## Task 6.21
+
+You (probably) have one nasty bug in your application. If the user clicks the vote button multiple times in a row, the notification is displayed funnily. For example if a user votes twice in three seconds, the last notification is only displayed for two seconds (assuming the notification is normally shown for 5 seconds). This happens because removing the first notification accidentally removes the second notification.
+
+Fix the bug so that after multiple votes in a row, the notification for the last vote is displayed for five seconds. This can be done by cancelling the removal of the previous notification when a new notification is displayed whenever necessary. The documentation for the setTimeout function might also be useful for this.
