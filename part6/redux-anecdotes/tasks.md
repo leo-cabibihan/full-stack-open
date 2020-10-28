@@ -64,7 +64,7 @@ The creation of notifications is still a bit tedious, since one has to do two ac
 
 Modify the AnecdoteList component so that it uses the connect function instead of the hooks. You may need to implement your own mapStateToProps and mapDispatchToProps functions.
 
-## Task 6.20
+~~ ## Task 6.20 ~~
 
 Do the same for the Filter and AnecdoteForm components.
 
