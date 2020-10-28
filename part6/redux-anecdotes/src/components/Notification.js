@@ -9,7 +9,6 @@ const Notification = () => {
     borderWidth: 1,
     display: notification.open ? "block" : "none",
   };
-  console.log(style);
   return <div style={style}>{notification.message}</div>;
 };
 

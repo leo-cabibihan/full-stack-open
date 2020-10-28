@@ -2,6 +2,7 @@ import React from "react";
 import { vote } from "../reducers/anecdoteReducer";
 //import { useSelector, useDispatch } from "react-redux";
 import { connect } from "react-redux";
+import { showMessage } from "../reducers/notificationReducer";
 
 const AnecdoteList = (props) => {
   return (
@@ -15,7 +16,14 @@ const AnecdoteList = (props) => {
             <div>{anecdote.content}</div>
             <div>
               has {anecdote.votes}
-              <button onClick={() => props.vote(anecdote)}>vote</button>
+              <button
+                onClick={() => {
+                  props.showMessage("vote added", 5000);
+                  props.vote(anecdote);
+                }}
+              >
+                vote
+              </button>
             </div>
           </div>
         ))}
@@ -32,6 +40,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = {
   vote,
+  showMessage,
 };
 
 const ConnectedAnecdotesList = connect(

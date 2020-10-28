@@ -64,11 +64,11 @@ The creation of notifications is still a bit tedious, since one has to do two ac
 
 Modify the AnecdoteList component so that it uses the connect function instead of the hooks. You may need to implement your own mapStateToProps and mapDispatchToProps functions.
 
-~~ ## Task 6.20 ~~
+~~## Task 6.20~~
 
 Do the same for the Filter and AnecdoteForm components.
 
-## Task 6.21
+~~## Task 6.21~~
 
 You (probably) have one nasty bug in your application. If the user clicks the vote button multiple times in a row, the notification is displayed funnily. For example if a user votes twice in three seconds, the last notification is only displayed for two seconds (assuming the notification is normally shown for 5 seconds). This happens because removing the first notification accidentally removes the second notification.
 
