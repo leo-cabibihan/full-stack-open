@@ -8,7 +8,7 @@ The Footer-component should always be visible at the bottom.
 
 The creation of a new anecdote should happen e.g. in the path create:
 
-## Task 7.2
+~~## Task 7.2~~
 
 Implement a view for showing a single anecdote:
 
