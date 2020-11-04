@@ -12,7 +12,7 @@ The creation of a new anecdote should happen e.g. in the path create:
 
 Implement a view for showing a single anecdote:
 
-## Task 7.3
+~~## Task 7.3~~
 
 The default functionality of the creation form is quite confusing, because nothing seems to be happening after creating a new anecdote using the form.
 
