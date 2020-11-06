@@ -28,6 +28,6 @@ Add a button to the form that you can use to clear all the input fields:
 
 Expand the functionality of the useField hook so that it offers a new reset operation for clearing the field.
 
-## Task 7.6
+## ~~Task 7.6~~
 
 If you see the warning in the console, make the necessary changes to get rid of it
