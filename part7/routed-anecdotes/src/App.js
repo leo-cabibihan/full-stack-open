@@ -3,10 +3,10 @@ import {
   Switch,
   Route,
   Link,
-  useParams,
   useRouteMatch,
   useHistory,
 } from "react-router-dom";
+import { useField } from "./hooks";
 
 const Menu = () => {
   const padding = {
