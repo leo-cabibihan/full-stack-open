@@ -18,11 +18,11 @@ The default functionality of the creation form is quite confusing, because nothi
 
 Improve the functionality such that after creating a new anecdote the application transitions automatically to showing the view for all anecdotes and the user is shown a notification informing them of this successful creation for the next 10 seconds:
 
-## Task 7.4
+## ~~ Task 7.4 ~~
 
 Simplify the anecdote creation form of your application with the useField custom hook we defined earlier. One natural place to save the custom hooks of your application is in the /src/hooks/index.js file. If you use the named export instead of the default export:
 
-~~ ## Task 7.5 ~~
+## Task 7.5
 
 Add a button to the form that you can use to clear all the input fields:
 
