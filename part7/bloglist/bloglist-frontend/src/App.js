@@ -5,6 +5,9 @@ import LoginForm from "./components/LoginForm";
 import loginService from "./services/login";
 import BlogForm from "./components/BlogForm";
 import Toggleable from "./components/Toggleable";
+import Notification from "./components/Notification";
+import { useDispatch } from "react-redux";
+import { showMessage } from "./reducers/notificationReducer";
 
 const sorted = (list) => {
   return [...list].sort((b, a) => a.likes - b.likes);
@@ -13,16 +16,7 @@ const sorted = (list) => {
 const App = () => {
   const [blogs, setBlogs] = useState([]);
   const [user, setUser] = useState(null);
-  const [message, setMessage] = useState("");
-  const [shouldMessage, setShouldMessage] = useState(false);
-
-  const showMessage = (words) => {
-    setMessage(words);
-    setShouldMessage(true);
-    setTimeout(() => {
-      setShouldMessage(false);
-    }, 3000);
-  };
+  const dispatch = useDispatch();
 
   useEffect(() => {
     blogService.getAll().then((blogs) => setBlogs(blogs));
@@ -51,7 +45,7 @@ const App = () => {
         blogService.setUser(newUser);
       })
       .catch(() => {
-        showMessage("username or password is wrong");
+        dispatch(showMessage("username or password is wrong", 5000));
       });
   };
 
@@ -67,9 +61,9 @@ const App = () => {
       .then((res) => {
         blogFormRef.current.toggleVisibility();
         setBlogs(blogs.concat(res));
-        showMessage(`new blog, ${title} added`);
+        dispatch(showMessage(`new blog, ${title} added`, 5000));
       })
-      .catch(() => showMessage("not formatted properly"));
+      .catch(() => dispatch(showMessage("not formatted properly", 5000)));
   };
 
   const like = async (id) => {
@@ -78,6 +72,7 @@ const App = () => {
     try {
       await blogService.update(id, newBlog);
       setBlogs(sorted(blogs.map((blog) => (blog.id === id ? newBlog : blog))));
+      dispatch(showMessage("you liked something", 5000));
     } catch (error) {
       alert("something broke");
     }
@@ -92,7 +87,7 @@ const App = () => {
 
   return (
     <div>
-      {shouldMessage ? <p>{`${message}`}</p> : null}
+      <Notification />
       {user === null ? (
         <LoginForm action={signIn} />
       ) : (

@@ -1,4 +1,4 @@
-## Task 7.9
+## ~~Task 7.9~~
 
 Refactor the application from using internal React component state to using Redux for the application's state management.
 
