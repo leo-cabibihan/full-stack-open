@@ -4,9 +4,7 @@ Refactor the application from using internal React component state to using Redu
 
 Change the application's notifications to use Redux at this point of the exercise set.
 
-## Task 7.10
-
-Note that this and the next two exercises are quite laborious but incredibly educational.
+## ~Task 7.10~
 
 Store the information about blog posts in the Redux store. In this exercise it is enough that you can see the blogs in backend and create a new blog.
 

@@ -1,18 +1,6 @@
 import axios from "axios";
 const baseUrl = "/api/blogs";
 
-/* let token = null;
-
-let userId = null;
-
-const setToken = (newToken) => {
-  token = `bearer ${newToken}`;
-};
-
-
-const setUserId = (id) => {
-  userId = id;
-}; */
 let user = {};
 
 const setUser = (newUser) => {
@@ -34,8 +22,8 @@ const create = async (newObject) => {
   return response.data;
 };
 
-const update = (id, newObject) => {
-  const request = axios.put(`${baseUrl}/${id}`, newObject, config(user.token));
+const update = (id) => {
+  const request = axios.put(`${baseUrl}/${id}`, config(user.token));
   return request.then((response) => response.data);
 };
 

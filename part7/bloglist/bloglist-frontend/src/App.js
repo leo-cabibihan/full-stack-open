@@ -6,21 +6,20 @@ import loginService from "./services/login";
 import BlogForm from "./components/BlogForm";
 import Toggleable from "./components/Toggleable";
 import Notification from "./components/Notification";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { showMessage } from "./reducers/notificationReducer";
+import { like, remove } from "./reducers/blogsReducer";
 
 const sorted = (list) => {
   return [...list].sort((b, a) => a.likes - b.likes);
 };
 
 const App = () => {
-  const [blogs, setBlogs] = useState([]);
+  //const [blogs, setBlogs] = useState([]);
   const [user, setUser] = useState(null);
   const dispatch = useDispatch();
-
-  useEffect(() => {
-    blogService.getAll().then((blogs) => setBlogs(blogs));
-  }, []);
+  const blogs = useSelector((state) => state.blogs);
+  console.log(blogs);
 
   useEffect(() => {
     const loggedUserJSON = window.localStorage.getItem("loggedBlogListUser");
@@ -54,7 +53,7 @@ const App = () => {
     setUser(null);
   };
   const blogFormRef = useRef();
-
+  /*
   const addBlog = (title, author, url) => {
     blogService
       .create({ title, author, url })
@@ -65,25 +64,7 @@ const App = () => {
       })
       .catch(() => dispatch(showMessage("not formatted properly", 5000)));
   };
-
-  const like = async (id) => {
-    const { likes, ...rest } = blogs.find((blog) => blog.id === id);
-    const newBlog = { likes: likes + 1, ...rest };
-    try {
-      await blogService.update(id, newBlog);
-      setBlogs(sorted(blogs.map((blog) => (blog.id === id ? newBlog : blog))));
-      dispatch(showMessage("you liked something", 5000));
-    } catch (error) {
-      alert("something broke");
-    }
-  };
-
-  const remove = async (id) => {
-    await blogService
-      .remove(id)
-      .then(() => setBlogs(blogs.filter((blog) => blog.id !== id)))
-      .catch(() => alert("you're not allowed to delete that"));
-  };
+  */
 
   return (
     <div>
@@ -99,11 +80,13 @@ const App = () => {
           </p>
           <h2>add new</h2>
           <Toggleable buttonLabel={"add blog"} ref={blogFormRef}>
-            <BlogForm action={addBlog} />
+            {/*<BlogForm action={addBlog} />*/}
           </Toggleable>
-          {blogs.map((blog) => (
-            <Blog key={blog.id} blog={blog} like={like} remove={remove} />
-          ))}
+          {blogs
+            ? blogs.map((blog) => (
+                <Blog key={blog.id} blog={blog} like={like} remove={remove} />
+              ))
+            : null}
         </div>
       )}
     </div>
