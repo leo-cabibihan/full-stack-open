@@ -1,10 +1,12 @@
 import React from "react";
 import Toggleable from "./Toggleable";
+import { useDispatch } from "react-redux";
 
 const Blog = ({ blog, like, remove }) => {
+  const dispatch = useDispatch();
   const useRemove = () => {
     if (window.confirm(`Remove ${blog.title} by ${blog.author}`)) {
-      remove(blog.id);
+      dispatch(remove(blog.id));
     }
   };
 
@@ -18,7 +20,7 @@ const Blog = ({ blog, like, remove }) => {
           <button
             id="like-button"
             onClick={() => {
-              like(blog.id);
+              dispatch(like(blog.id));
             }}
           >
             like

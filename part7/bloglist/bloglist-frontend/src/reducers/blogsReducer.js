@@ -7,9 +7,16 @@ const sorted = (list) => {
 const reducer = (state = [], action) => {
   switch (action.type) {
     case "LIKE_BLOG":
-      const newBlog = action.data.newBlog;
       return sorted(
-        state.map((blog) => (blog.id === newBlog.id ? newBlog : blog))
+        state.map((blog) => {
+          if (blog.id === action.data.id) {
+            const { likes, ...rest } = blog;
+            const newBlog = { likes: blog.likes + 1, ...rest };
+            return newBlog;
+          } else {
+            return blog;
+          }
+        })
       );
     case "REMOVE_BLOG":
       return state.filter((blog) => blog.id !== action.data.id);
@@ -21,21 +28,26 @@ const reducer = (state = [], action) => {
 };
 
 export const like = (id) => {
+  console.log("hi");
   return async (dispatch) => {
-    const newBlog = await blogService(id);
-    dispatch({ type: "LIKE_BLOG", data: { newBlog } });
+    console.log("hello");
+    await blogService.like(id);
+    dispatch({ type: "LIKE_BLOG", data: { id } });
   };
 };
 
 export const remove = (id) => {
   return async (dispatch) => {
-    await blogService.remove(id);
-    dispatch({ type: "REMOVE_BLOG", data: { id } });
+    try {
+      await blogService.remove(id);
+      dispatch({ type: "REMOVE_BLOG", data: { id } });
+    } catch {
+      alert("you can't delete what isn't yours");
+    }
   };
 };
 
 export const updateAll = (data) => {
-  console.log("hi");
   return {
     type: "UPDATE_ALL",
     data,

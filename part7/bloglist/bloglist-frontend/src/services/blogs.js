@@ -1,4 +1,5 @@
 import axios from "axios";
+
 const baseUrl = "/api/blogs";
 
 let user = {};
@@ -22,15 +23,20 @@ const create = async (newObject) => {
   return response.data;
 };
 
-const update = (id) => {
-  const request = axios.put(`${baseUrl}/${id}`, config(user.token));
-  return request.then((response) => response.data);
+const like = async (id) => {
+  console.log("update");
+  const response = await axios.put(`${baseUrl}/${id}`, config(user.token));
+  console.log(response);
+  return response.data;
 };
 
-const remove = (id) => {
+const remove = async (id) => {
   console.log(config(user.token, user.id));
-  const request = axios.delete(`${baseUrl}/${id}`, config(user.token, user.id));
-  return request.then((response) => console.log("success"));
+  const response = await axios.delete(
+    `${baseUrl}/${id}`,
+    config(user.token, user.id)
+  );
+  return response.data;
 };
 
-export default { getAll, create, update, remove, setUser };
+export default { getAll, create, like, remove, setUser };
