@@ -28,9 +28,7 @@ const reducer = (state = [], action) => {
 };
 
 export const like = (id) => {
-  console.log("hi");
   return async (dispatch) => {
-    console.log("hello");
     await blogService.like(id);
     dispatch({ type: "LIKE_BLOG", data: { id } });
   };

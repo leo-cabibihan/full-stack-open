@@ -24,14 +24,11 @@ const create = async (newObject) => {
 };
 
 const like = async (id) => {
-  console.log("update");
   const response = await axios.put(`${baseUrl}/${id}`, config(user.token));
-  console.log(response);
   return response.data;
 };
 
 const remove = async (id) => {
-  console.log(config(user.token, user.id));
   const response = await axios.delete(
     `${baseUrl}/${id}`,
     config(user.token, user.id)

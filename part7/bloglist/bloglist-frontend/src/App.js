@@ -9,48 +9,35 @@ import Notification from "./components/Notification";
 import { useDispatch, useSelector } from "react-redux";
 import { showMessage } from "./reducers/notificationReducer";
 import { like, remove } from "./reducers/blogsReducer";
+import {
+  initializeUser,
+  signIn as something,
+  signOut as somethingElse,
+} from "./reducers/signInReducer";
 
-const sorted = (list) => {
-  return [...list].sort((b, a) => a.likes - b.likes);
-};
+function isEmpty(obj) {
+  for (var key in obj) {
+    if (obj.hasOwnProperty(key)) return false;
+  }
+  return true;
+}
 
 const App = () => {
-  //const [blogs, setBlogs] = useState([]);
-  const [user, setUser] = useState(null);
+  //const [user, setUser] = useState(null);
   const dispatch = useDispatch();
+  const user = useSelector((state) => state.user);
   const blogs = useSelector((state) => state.blogs);
-  console.log(blogs);
 
   useEffect(() => {
-    const loggedUserJSON = window.localStorage.getItem("loggedBlogListUser");
-    if (loggedUserJSON) {
-      const user = JSON.parse(loggedUserJSON);
-      setUser(user);
-      //blogService.setToken(user.token);
-      blogService.setUser(user);
-    }
+    dispatch(initializeUser());
   }, []);
 
   const signIn = (username, password) => {
-    loginService
-      .login(username, password)
-      .then((newUser) => {
-        setUser(newUser);
-        window.localStorage.setItem(
-          "loggedBlogListUser",
-          JSON.stringify(newUser)
-        );
-        //blogService.setToken(newUser.token);
-        blogService.setUser(newUser);
-      })
-      .catch(() => {
-        dispatch(showMessage("username or password is wrong", 5000));
-      });
+    dispatch(something(username, password));
   };
 
   const signOut = () => {
-    window.localStorage.removeItem("loggedBlogListUser");
-    setUser(null);
+    dispatch(somethingElse());
   };
   const blogFormRef = useRef();
   /*
@@ -69,7 +56,7 @@ const App = () => {
   return (
     <div>
       <Notification />
-      {user === null ? (
+      {isEmpty(user) ? (
         <LoginForm action={signIn} />
       ) : (
         <div>
