@@ -9,8 +9,7 @@ const Blogs = () => {
     <div>
       {blogs.map((blog) => (
         <Link key={blog.id} to={`/blogs/${blog.id}`}>
-          {" "}
-          {blog.title}{" "}
+          <div>{blog.title}</div>
         </Link>
       ))}
     </div>

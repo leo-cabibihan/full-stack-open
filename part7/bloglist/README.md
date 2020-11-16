@@ -26,7 +26,7 @@ Implement a view to the application that displays all of the basic information r
 
 Implement a view for individual users, that displays all of the blog posts added by that user:
 
-## Task 7.15
+## ~~Task 7.15~~
 
 Implement a separate view for blog posts. You can model the layout of your view after the following example:
 

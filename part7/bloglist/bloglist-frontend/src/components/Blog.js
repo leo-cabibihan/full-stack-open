@@ -13,26 +13,32 @@ const Blog = () => {
     }
   };
   const blogs = useSelector((state) => state.blogs);
+  console.log(blogs);
   const match = useRouteMatch("/blogs/:id");
   const blog = match ? blogs.find((blog) => blog.id === match.params.id) : null;
 
   return (
     <div className="blog">
-      {blog.title} {blog.author}
-      <div>{blog.url}</div>
-      <div className="likes">
-        {blog.likes}{" "}
-        <button
-          id="like-button"
-          onClick={() => {
-            dispatch(like(blog.id));
-          }}
-        >
-          like
-        </button>
-      </div>
-      <div>{blog.user.username}</div>
-      <button onClick={useRemove}> remove </button>
+      {blog ? (
+        <>
+          {" "}
+          {blog.title} {blog.author}
+          <div>{blog.url}</div>
+          <div className="likes">
+            {blog.likes}{" "}
+            <button
+              id="like-button"
+              onClick={() => {
+                dispatch(like(blog.id));
+              }}
+            >
+              like
+            </button>
+          </div>
+          <div>{blog.user.username}</div>
+          <button onClick={useRemove}> remove </button>
+        </>
+      ) : null}
     </div>
   );
 };
