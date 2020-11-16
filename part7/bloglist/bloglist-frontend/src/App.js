@@ -11,6 +11,8 @@ import {
   signOut as somethingElse,
 } from "./reducers/signInReducer";
 import Users from "./components/Users";
+import User from "./components/User";
+import { Switch, Route } from "react-router-dom";
 
 function isEmpty(obj) {
   for (var key in obj) {
@@ -57,21 +59,34 @@ const App = () => {
         <LoginForm action={signIn} />
       ) : (
         <div>
-          <h2>blogs</h2>
-          <p>
-            {`Logged in as ${user.username}`}{" "}
-            <button onClick={signOut}>Log Out</button>
-          </p>
-          <h2>add new</h2>
-          <Toggleable buttonLabel={"add blog"} ref={blogFormRef}>
-            {/*<BlogForm action={addBlog} />*/}
-          </Toggleable>
-          {blogs
-            ? blogs.map((blog) => (
-                <Blog key={blog.id} blog={blog} like={like} remove={remove} />
-              ))
-            : null}
-          <Users />
+          <Switch>
+            <Route exact path="/">
+              <h2>blogs</h2>
+              <p>
+                {`Logged in as ${user.username}`}{" "}
+                <button onClick={signOut}>Log Out</button>
+              </p>
+              <h2>add new</h2>
+              <Toggleable buttonLabel={"add blog"} ref={blogFormRef}>
+                {/*<BlogForm action={addBlog} />*/}
+              </Toggleable>
+              {blogs
+                ? blogs.map((blog) => (
+                    <Blog
+                      key={blog.id}
+                      blog={blog}
+                      like={like}
+                      remove={remove}
+                    />
+                  ))
+                : null}
+
+              <Users />
+            </Route>
+            <Route to="/users/:id">
+              <User />
+            </Route>
+          </Switch>
         </div>
       )}
     </div>

@@ -1,19 +1,25 @@
 //BlogForm.js
-import React, { useState, useEffect } from "react";
-import userService from "../services/users";
-import User from "./User";
+import React, { useEffect } from "react";
+import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { updateUsers } from "../reducers/usersReducer";
 
 const Users = () => {
-  const [users, setUsers] = useState([]);
+  const users = useSelector((state) => state.users);
+  const dispatch = useDispatch();
   useEffect(() => {
-    userService.getAllUsers().then((users) => setUsers(users));
+    dispatch(updateUsers());
   }, []);
   return (
     <>
       <h2>users</h2>
       <p>blogs created</p>
       {users.map((user) => (
-        <User key={user.id} {...user} />
+        <div key={user.id}>
+          <Link to={`/users/${user.id}`}>
+            {user.blogs.length} {user.username}
+          </Link>
+        </div>
       ))}
     </>
   );

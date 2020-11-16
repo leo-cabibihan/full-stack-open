@@ -5,9 +5,10 @@ import { createStore, combineReducers, applyMiddleware } from "redux";
 import { composeWithDevTools } from "redux-devtools-extension";
 import thunk from "redux-thunk";
 import blogService from "./services/blogs";
+import users from "./reducers/usersReducer";
 
 const store = createStore(
-  combineReducers({ notification, blogs, user }),
+  combineReducers({ notification, blogs, user, users }),
   composeWithDevTools(applyMiddleware(thunk))
 );
 
