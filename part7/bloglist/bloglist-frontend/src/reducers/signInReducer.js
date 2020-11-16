@@ -2,8 +2,6 @@ import loginService from "../services/login";
 import blogService from "../services/blogs";
 
 const reducer = (state = {}, action) => {
-  console.log(state);
-  console.log(action);
   switch (action.type) {
     case "SIGN_IN":
       return action.data;
@@ -17,7 +15,6 @@ const reducer = (state = {}, action) => {
 export const initializeUser = () => {
   const loggedUserJSON = window.localStorage.getItem("loggedBlogListUser");
   if (loggedUserJSON) {
-    console.log("why are you running");
     const user = JSON.parse(loggedUserJSON);
     blogService.setUser(user);
     return { type: "SIGN_IN", data: user };

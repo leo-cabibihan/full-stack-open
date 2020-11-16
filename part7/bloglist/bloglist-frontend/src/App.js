@@ -1,19 +1,16 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import Blog from "./components/Blog";
-import blogService from "./services/blogs";
 import LoginForm from "./components/LoginForm";
-import loginService from "./services/login";
-import BlogForm from "./components/BlogForm";
 import Toggleable from "./components/Toggleable";
 import Notification from "./components/Notification";
 import { useDispatch, useSelector } from "react-redux";
-import { showMessage } from "./reducers/notificationReducer";
 import { like, remove } from "./reducers/blogsReducer";
 import {
   initializeUser,
   signIn as something,
   signOut as somethingElse,
 } from "./reducers/signInReducer";
+import Users from "./components/Users";
 
 function isEmpty(obj) {
   for (var key in obj) {
@@ -30,7 +27,7 @@ const App = () => {
 
   useEffect(() => {
     dispatch(initializeUser());
-  }, []);
+  }, []); // eslint-disable-line
 
   const signIn = (username, password) => {
     dispatch(something(username, password));
@@ -74,6 +71,7 @@ const App = () => {
                 <Blog key={blog.id} blog={blog} like={like} remove={remove} />
               ))
             : null}
+          <Users />
         </div>
       )}
     </div>
