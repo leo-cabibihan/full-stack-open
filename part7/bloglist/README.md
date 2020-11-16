@@ -34,7 +34,7 @@ Users should be able to access the view by clicking the name of the blog post in
 
 After you're done with this exercise, the functionality that was implemented in exercise 5.6 is no longer necessary. Clicking a blog post no longer needs to expand the item in the list and display the details of the blog post.
 
-## Task 7.16
+## ~~Task 7.16~~
 
 Implement a navigation menu for the application
 

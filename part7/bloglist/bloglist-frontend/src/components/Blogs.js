@@ -7,6 +7,8 @@ const Blogs = () => {
 
   return (
     <div>
+      <h2>blogs</h2>
+
       {blogs.map((blog) => (
         <Link key={blog.id} to={`/blogs/${blog.id}`}>
           <div>{blog.title}</div>

@@ -12,7 +12,7 @@ import {
 } from "./reducers/signInReducer";
 import Users from "./components/Users";
 import User from "./components/User";
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route, Link } from "react-router-dom";
 
 function isEmpty(obj) {
   for (var key in obj) {
@@ -58,18 +58,23 @@ const App = () => {
         <LoginForm action={signIn} />
       ) : (
         <div>
+          <p>
+            <Link to="/users">Users</Link> <Link to="/blogs">Blogs</Link>{" "}
+            {`Logged in as ${user.username}`}{" "}
+            <button onClick={signOut}>Log Out</button>
+          </p>
           <Switch>
             <Route exact path="/">
-              <h2>blogs</h2>
-              <p>
-                {`Logged in as ${user.username}`}{" "}
-                <button onClick={signOut}>Log Out</button>
-              </p>
+              <h1>Hi</h1>
+            </Route>
+            <Route exact path="/blogs">
               <h2>add new</h2>
               <Toggleable buttonLabel={"add blog"} ref={blogFormRef}>
                 {/*<BlogForm action={addBlog} />*/}
               </Toggleable>
               <Blogs />
+            </Route>
+            <Route exact path="/users">
               <Users />
             </Route>
             <Route path="/users/:id">
