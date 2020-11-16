@@ -1,10 +1,10 @@
 import React, { useEffect, useRef } from "react";
 import Blog from "./components/Blog";
+import Blogs from "./components/Blogs";
 import LoginForm from "./components/LoginForm";
 import Toggleable from "./components/Toggleable";
 import Notification from "./components/Notification";
 import { useDispatch, useSelector } from "react-redux";
-import { like, remove } from "./reducers/blogsReducer";
 import {
   initializeUser,
   signIn as something,
@@ -25,7 +25,6 @@ const App = () => {
   //const [user, setUser] = useState(null);
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
-  const blogs = useSelector((state) => state.blogs);
 
   useEffect(() => {
     dispatch(initializeUser());
@@ -70,21 +69,14 @@ const App = () => {
               <Toggleable buttonLabel={"add blog"} ref={blogFormRef}>
                 {/*<BlogForm action={addBlog} />*/}
               </Toggleable>
-              {blogs
-                ? blogs.map((blog) => (
-                    <Blog
-                      key={blog.id}
-                      blog={blog}
-                      like={like}
-                      remove={remove}
-                    />
-                  ))
-                : null}
-
+              <Blogs />
               <Users />
             </Route>
-            <Route to="/users/:id">
+            <Route path="/users/:id">
               <User />
+            </Route>
+            <Route path="/blogs/:id">
+              <Blog />
             </Route>
           </Switch>
         </div>

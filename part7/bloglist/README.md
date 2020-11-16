@@ -22,7 +22,7 @@ Store the information about the signed in user in the Redux store.
 
 Implement a view to the application that displays all of the basic information related to users:
 
-## Task 7.14
+## ~~Task 7.14~~
 
 Implement a view for individual users, that displays all of the blog posts added by that user:
 
