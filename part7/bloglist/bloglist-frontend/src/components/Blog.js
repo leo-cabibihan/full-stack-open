@@ -6,14 +6,12 @@ import { useRouteMatch } from "react-router-dom";
 
 const Blog = () => {
   const dispatch = useDispatch();
-  console.log("hi");
   const useRemove = () => {
     if (window.confirm(`Remove ${blog.title} by ${blog.author}`)) {
       dispatch(remove(blog.id));
     }
   };
   const blogs = useSelector((state) => state.blogs);
-  console.log(blogs);
   const match = useRouteMatch("/blogs/:id");
   const blog = match ? blogs.find((blog) => blog.id === match.params.id) : null;
 
@@ -36,6 +34,12 @@ const Blog = () => {
             </button>
           </div>
           <div>{blog.user.username}</div>
+          comments
+          <div>
+            {blog.comments.map((comment) => (
+              <li> {comment}</li>
+            ))}
+          </div>
           <button onClick={useRemove}> remove </button>
         </>
       ) : null}

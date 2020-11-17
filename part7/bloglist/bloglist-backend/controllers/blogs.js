@@ -47,7 +47,6 @@ blogsRouter.post("/", async (req, res, next) => {
 // only the user who created the post can delete
 blogsRouter.delete("/:id", async (req, res, next) => {
   console.log(req.params.id);
-  console.log("jidfji");
   const decodedToken = jwt.verify(req.token, process.env.JWT_SECRET);
   const blog = await Blog.findById(req.params.id);
 
@@ -68,6 +67,18 @@ blogsRouter.put("/:id", async (req, res, next) => {
 
   const update = { likes: blog.likes + 1 };
   await blog.updateOne(update);
+  res.status(200).end();
+});
+
+blogsRouter.post("/:id/comments", async (req, res) => {
+  console.log(req.body);
+  const comment = req.body.comment;
+  if (!req.body.comment) {
+    res.status(401).json({ error: "badly formatted request" });
+  }
+  const blog = await Blog.findById(req.params.id);
+  blog.comments.push(comment);
+  await blog.save();
   res.status(200).end();
 });
 

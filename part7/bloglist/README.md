@@ -38,7 +38,8 @@ After you're done with this exercise, the functionality that was implemented in 
 
 Implement a navigation menu for the application
 
-7.17: comments, step1
+## ~~Task 7.17~~
+
 Implement the functionality for commenting on blog posts:
 
 Comments should be anonymous, meaning that they are not associated to the user who left the comment.
