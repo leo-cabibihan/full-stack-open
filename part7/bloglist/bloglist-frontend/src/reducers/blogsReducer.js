@@ -52,4 +52,13 @@ export const updateAll = (data) => {
   };
 };
 
+export const addComment = (comment, id) => {
+  return async (dispatch) => {
+    console.log(comment);
+    await blogService.addComment(comment, id);
+    const data = await blogService.getAll();
+    dispatch({ type: "UPDATE_ALL", data });
+  };
+};
+
 export default reducer;

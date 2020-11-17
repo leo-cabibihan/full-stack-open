@@ -1,7 +1,6 @@
 import userService from "../services/users";
 
 const reducer = (state = [], action) => {
-  console.log(state);
   switch (action.type) {
     case "ADD_USERS":
       console.log(action.data);

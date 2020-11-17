@@ -48,8 +48,9 @@ In this exercise it is enough for the frontend to only display the comments that
 
 An appropriate mechanism for adding comments to a blog post would be an HTTP POST request to the api/blogs/:id/comments endpoint.
 
-7.18: comments, step2
-Extend your application so that users can add comments to blog posts from the frontend:
+## ~~Task 7.18~~
+
+Extend your application so that users can add comments to blog posts from the frontend
 
 7.19: Styles, step1
 Improve the appearance of your application by applying one of the methods shown in the course material.

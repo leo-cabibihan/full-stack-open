@@ -3,6 +3,7 @@ import Toggleable from "./Toggleable";
 import { useDispatch, useSelector } from "react-redux";
 import { like, remove } from "../reducers/blogsReducer";
 import { useRouteMatch } from "react-router-dom";
+import CommentForm from "./CommentForm";
 
 const Blog = () => {
   const dispatch = useDispatch();
@@ -35,6 +36,7 @@ const Blog = () => {
           </div>
           <div>{blog.user.username}</div>
           comments
+          <CommentForm id={blog.id} />
           <div>
             {blog.comments.map((comment) => (
               <li> {comment}</li>
