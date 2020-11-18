@@ -75,15 +75,15 @@ Make a new user in the beforeEach block for the tests.
 
 Make a test which checks that a logged in user can create a new blog.
 
-## Task 5.20
+## ~~Task 5.20~~
 
 Make a test which checks that user can like a blog.
 
-## Task 5.21
+## ~~Task 5.21~~
 
 Make a test for ensuring that the user who created a blog can delete it.
 
-## Task 5.22
+## ~~Task 5.22~~
 
 Make a test which checks that the blogs are ordered according to likes with the blog with the most likes being first.
 
