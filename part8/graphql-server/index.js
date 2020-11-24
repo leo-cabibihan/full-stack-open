@@ -84,7 +84,8 @@ const typeDefs = gql`
   type Author {
     name: String!
     id: String!
-    born: Int!
+    born: Int
+    bookCount: Int
   }
 
   type Mutation {
