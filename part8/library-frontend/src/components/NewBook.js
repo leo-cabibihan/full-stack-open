@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { gql, useMutation } from "@apollo/client";
 
-const CREATE_PERSON = gql`
+const CREATE_BOOK = gql`
   mutation createBook(
     $title: String!
     $author: String!
@@ -27,7 +27,7 @@ const NewBook = (props) => {
   const [genre, setGenre] = useState("");
   const [genres, setGenres] = useState([]);
 
-  const [createPerson] = useMutation(CREATE_PERSON);
+  const [createPerson] = useMutation(CREATE_BOOK);
 
   if (!props.show) {
     return null;

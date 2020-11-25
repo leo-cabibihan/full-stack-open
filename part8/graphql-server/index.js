@@ -138,16 +138,19 @@ const resolvers = {
       return book;
     },
     editAuthor: (root, args) => {
-      const author = authors.find((author) => author.name === args.name);
+      const author = authors.find(
+        (author) => author.name.toLowerCase() === args.name.toLowerCase()
+      );
       console.log(author);
       if (author === undefined) {
         return null;
       } else {
         const updatedAuthor = { ...author, born: args.setBornTo };
         authors = authors.map((author) =>
-          author.name === args.name ? updatedAuthor : author
+          author.name === updatedAuthor.name ? updatedAuthor : author
         );
         console.log(updatedAuthor);
+        console.log(authors);
         return updatedAuthor;
       }
     },
