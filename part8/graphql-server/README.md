@@ -20,6 +20,8 @@ Complete the program so that all queries (except allBooks with the parameter aut
 
 Complete the program so that database validation errors (e.g. too short book title or author name) are handled sensibly. This means that they cause UserInputError with a suitable error message to be thrown.
 
-## Task 8.16
+## ~~Task 8.16~~
 
 Add user management to your application.
+
+Make the mutations addBook and editAuthor possible only if the request includes a valid token.
